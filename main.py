@@ -12,9 +12,6 @@ class Checker:
     def __init__(self):
         if os.getenv("GITHUB_ACTIONS") == "true":
             chrome_options = Options()
-            chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
             self.driver = webdriver.Chrome(options=chrome_options)
         else:
             self.driver = webdriver.Chrome(service=Service("/Users/leon/projects/selenium/chromedriver"))
@@ -24,8 +21,8 @@ class Checker:
         try:
             self.driver.get("https://pio-przybysz.duw.pl/login")
             sleep(5)
-            self.driver.find_element(By.ID, "mat-input-0").send_keys("igrleon@gmail.com")
-            self.driver.find_element(By.ID,"mat-input-1").send_keys("!Nd4spdmw")
+            self.driver.find_element(By.ID, "mat-input-0").send_keys(os.getenv('EMAIL_TO'))
+            self.driver.find_element(By.ID,"mat-input-1").send_keys(os.getenv('KP_PASSWORD'))
             self.driver.find_element(By.XPATH, "//button[text()='Zaloguj']").click()
             sleep(5)
             self.driver.get("https://pio-przybysz.duw.pl/szczegoly-wniosku/81463")
