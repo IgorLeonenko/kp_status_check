@@ -17,6 +17,9 @@ jobs:
           chrome-version: 130
           install-chromedriver: true
 
+      - name: Check Chrome Version
+        run: google-chrome --version
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
