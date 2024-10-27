@@ -12,6 +12,7 @@ class Checker:
     def __init__(self):
         if os.getenv("GITHUB_ACTIONS") == "true":
             chrome_options = Options()
+            chrome_options.add_argument("--headless")
             self.driver = webdriver.Chrome(options=chrome_options)
         else:
             self.driver = webdriver.Chrome(service=Service("/Users/leon/projects/selenium/chromedriver"))
