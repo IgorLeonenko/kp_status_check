@@ -14,9 +14,9 @@ class Checker:
         if os.getenv("GITHUB_ACTIONS") == "true":
             chrome_options = Options()
             chrome_options.add_argument("--headless")
-            # chrome_options.add_argument("--no-sandbox")
-            # chrome_options.add_argument("--disable-dev-shm-usage")
-            # chrome_options.add_argument("--disable-gpu")
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--disable-gpu")
             chrome_options.add_argument("--remote-debugging-port=9222")
             self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         else:
@@ -27,14 +27,13 @@ class Checker:
         try:
             sleep(15)
             self.driver.get("https://pio-przybysz.duw.pl/login")
-            print("Page title:", self.driver.title)
-            # sleep(5)
-            # self.driver.find_element(By.ID, "mat-input-0").send_keys(os.getenv('EMAIL_TO'))
-            # self.driver.find_element(By.ID,"mat-input-1").send_keys(os.getenv('KP_PASSWORD'))
-            # self.driver.find_element(By.XPATH, "//button[text()='Zaloguj']").click()
-            # sleep(5)
-            # self.driver.get("https://pio-przybysz.duw.pl/szczegoly-wniosku/81463")
-            # sleep(5)
+            sleep(5)
+            self.driver.find_element(By.ID, "mat-input-0").send_keys(os.getenv('EMAIL_TO'))
+            self.driver.find_element(By.ID,"mat-input-1").send_keys(os.getenv('KP_PASSWORD'))
+            self.driver.find_element(By.XPATH, "//button[text()='Zaloguj']").click()
+            sleep(5)
+            self.driver.get("https://pio-przybysz.duw.pl/szczegoly-wniosku/81463")
+            sleep(5)
         except Exception as e:
             self.send_email(f"Error in process: {e}")
             return
