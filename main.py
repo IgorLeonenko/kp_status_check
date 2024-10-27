@@ -18,6 +18,7 @@ class Checker:
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-gpu")
             chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--remote-debugging-port=9222")
             self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         else:
             self.driver = webdriver.Chrome(service=Service("/Users/leon/projects/selenium/chromedriver"))
