@@ -10,7 +10,15 @@ from selenium.webdriver.common.by import By
 
 class Checker:
     def __init__(self):
-        self.driver = webdriver.Chrome(service=Service(os.getenv("CHROME_DRIVER_PATH")))
+        if os.getenv("GITHUB_ACTIONS") == "true":
+            chrome_options = Options()
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            self.driver = webdriver.Chrome(options=chrome_options)
+        else:
+            self.driver = webdriver.Chrome(service=Service("/Users/leon/projects/selenium/chromedriver"))
+
 
     def process(self):
         try:
@@ -30,6 +38,7 @@ class Checker:
             self.send_all("KP status still not changed!")
         else:
             self.send_all("KP status has been changed!")
+        self.driver.quit()
 
     def send_sms(self, message):
         client = Client(os.getenv('SID'), os.getenv('TOKEN'))
