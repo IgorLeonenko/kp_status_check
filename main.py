@@ -26,15 +26,15 @@ class Checker:
     def process(self):
         try:
             sleep(15)
-            self.driver.get("https://google.com")
+            self.driver.get("https://pio-przybysz.duw.pl/login")
             print("Page title:", self.driver.title)
-            sleep(5)
-            self.driver.find_element(By.ID, "mat-input-0").send_keys(os.getenv('EMAIL_TO'))
-            self.driver.find_element(By.ID,"mat-input-1").send_keys(os.getenv('KP_PASSWORD'))
-            self.driver.find_element(By.XPATH, "//button[text()='Zaloguj']").click()
-            sleep(5)
-            self.driver.get("https://pio-przybysz.duw.pl/szczegoly-wniosku/81463")
-            sleep(5)
+            # sleep(5)
+            # self.driver.find_element(By.ID, "mat-input-0").send_keys(os.getenv('EMAIL_TO'))
+            # self.driver.find_element(By.ID,"mat-input-1").send_keys(os.getenv('KP_PASSWORD'))
+            # self.driver.find_element(By.XPATH, "//button[text()='Zaloguj']").click()
+            # sleep(5)
+            # self.driver.get("https://pio-przybysz.duw.pl/szczegoly-wniosku/81463")
+            # sleep(5)
         except Exception as e:
             self.send_email(f"Error in process: {e}")
             return
