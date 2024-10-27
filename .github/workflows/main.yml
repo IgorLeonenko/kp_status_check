@@ -14,8 +14,7 @@ jobs:
       - name: Set up ChromeDriver
         uses: browser-actions/setup-chrome@v1
         with:
-          chrome-version: 130
-          install-dependencies: true
+          chrome-version: 132
           install-chromedriver: true
 
       - name: Set up Python

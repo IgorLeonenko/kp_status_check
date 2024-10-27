@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
 class Checker:
     def __init__(self):
@@ -17,7 +18,7 @@ class Checker:
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-gpu")
             chrome_options.add_argument("--window-size=1920,1080")
-            self.driver = webdriver.Chrome(options=chrome_options)
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
         else:
             self.driver = webdriver.Chrome(service=Service("/Users/leon/projects/selenium/chromedriver"))
 
